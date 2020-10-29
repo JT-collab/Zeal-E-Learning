@@ -15,8 +15,8 @@
 ## Description
 
 The website is a simple learning management system(LMS) which provides following features:
-1. Login and Signup
-2. Forget password
-3. Catalog of courses
-4. My courses
-5. Payment gateway integration using RazorPay
+1. Login, Signup and Forgot password.
+2. Course catalog. 
+3. Free courses.
+4. My courses i.e paid courses.
+5. Payment gateway integration using RazorPay.
