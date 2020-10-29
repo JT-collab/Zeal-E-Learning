@@ -1,7 +1,7 @@
 # Zeal-E-Learning
 
 ![Login Screen](https://github.com/JT-collab/Zeal-E-Learning/blob/main/screenshots/login.png) 
-
+----
 ![Home Screen](https://github.com/JT-collab/Zeal-E-Learning/blob/main/screenshots/home.png)
 
 ## Setup
