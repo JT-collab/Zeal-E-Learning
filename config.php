@@ -1,7 +1,7 @@
 <?php
 
-$keyId = 'RAZORPAY_ID';
-$keySecret = 'SECRET_KEY';
+$keyId = 'rzp_test_hMEMklCYmvUGJc';
+$keySecret = 'V5zux4mmffdbYonSAlcj46c8';
 $displayCurrency = 'INR';
 
 //These should be commented out in production

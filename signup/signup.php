@@ -14,17 +14,25 @@ $email=$_POST["email"];
 $contact=$_POST["contact"];
 $password=$_POST["password"];
 $hash = md5($password);
+$trueOrFalse = 'true';
 
 $stmt = $conn->prepare('INSERT INTO `register`(`name`, `email`, `contact`, `password`) VALUES (?,?,?,? )');
 $stmt->bind_param('ssss', $user_name, $email, $contact, $hash);
 $stmt->execute();
 $res1 = $stmt->get_result();
 
-$stmt = $conn->prepare('INSERT INTO `login`(`username`, `password`) VALUES (?,?)');
-$stmt->bind_param('ss', $user_name, $hash);
-$stmt->execute();
-$res2 = $stmt->get_result();
-
+session_start();
+if(isset($_SESSION['user']['admin'])){
+    $stmt = $conn->prepare('INSERT INTO `login`(`username`, `password`,`admin`) VALUES (?,?,?)');
+    $stmt->bind_param('sss', $user_name, $hash, $trueOrFalse);
+    $stmt->execute();
+    $res2 = $stmt->get_result();
+}else{
+    $stmt = $conn->prepare('INSERT INTO `login`(`username`, `password`) VALUES (?,?)');
+    $stmt->bind_param('ss', $user_name, $hash);
+    $stmt->execute();
+    $res2 = $stmt->get_result();
+}
 
 // $sql="INSERT INTO `register`(`name`, `email`, `contact`, `password`) VALUES ('".$user_name."','".$email."','".$contact."','".$password."')";
 // $s="INSERT INTO `login`(`username`, `password`) VALUES ('".$user_name."','".$password."')";
@@ -33,7 +41,7 @@ $res2 = $stmt->get_result();
 //     header("Location: http://localhost:8080/project/login.php"); 
 // }
 
-header("Location: http://localhost:8080/project/login.php"); 
+header("Location: http://localhost/Zeal-E-Learning/index.php"); 
 mysqli_close($conn);
 }
 

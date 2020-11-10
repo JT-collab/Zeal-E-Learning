@@ -75,6 +75,9 @@
 					<li><a href="mycourses.php">My Courses</a></li>
 					
 					<li><a href="free_courses.php">Free Courses</a></li>
+					<?php if(isset($_SESSION['user']['admin'])){ ?>
+					<li><a href="signup/signup.php">Register Admin</a></li>
+					<?php } ?>
 				</ul>				     
 			</div>
 			<!--/.nav-collapse -->
