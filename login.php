@@ -27,6 +27,7 @@ if(mysqli_num_rows($result)==0){
 	//header("Location: http://localhost:8080/project/login.php");
 }
 else{	
+	$trueOrFalse = 'true';
 	$row=$result->fetch_assoc();
 	session_start();
 	session_unset();
@@ -37,7 +38,21 @@ else{
 	$_SESSION['user']['email']=$row['email'];
 	$_SESSION['user']['contact']=$row['contact'];
 	$_SESSION['user']['name']=$row['name'];
-	header("Location: http://localhost:8080/project/index.php");	
+
+	// $stmt = $conn->prepare('SELECT * FROM `login` WHERE admin = ?');
+	// $stmt->bind_param('admin', $trueOrFalse);
+	// $stmt->execute();
+	// $result = $stmt->get_result();
+
+	$sql = "SELECT * FROM `login` WHERE `password` = '$hash' AND `admin` = 'true'";
+	$result = mysqli_query($conn, $sql);
+	
+	if (mysqli_num_rows($result)==0){      
+		header("Location: http://localhost/Zeal-E-Learning/index.php");	
+	}else{
+		$_SESSION['user']['admin'] = 'admin';
+		header("Location: http://localhost/Zeal-E-Learning/index.php");	
+	}
 }
 mysqli_close($conn);	
 }
